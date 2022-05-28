@@ -62,7 +62,7 @@ const Music = (props, { navigation }) => {
 			var topRaw = await fetch(`${HEROKU_IP}/music/getTop`);
 			var top = await topRaw.json();
 			setTop(top.search);
-			var playTopRaw = await fetch(`${LHEROKU_IP}/music/getPlaylist/top`);
+			var playTopRaw = await fetch(`${HEROKU_IP}/music/getPlaylist/top`);
 			var playTop = await playTopRaw.json();
 			setPlaylist(playTop.playlists);
 		}
