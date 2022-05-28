@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ const MovieHomeItem = ({ movie }) => {
 
 	const getMovies = async id => {
 		try {
-			const movie = await axios.get(`${LOCAL_IP}/movie/getDetailsMoviesForWishlist`, {
+			const movie = await axios.get(`${HEROKU_IP}/movie/getDetailsMoviesForWishlist`, {
 				params: {
 					id,
 				},
@@ -43,7 +43,7 @@ const MovieHomeItem = ({ movie }) => {
 
 	// DELETE MOVIE FROM DATA BASE
 	let removeFromDBWishlist = async title => {
-		await fetch(`${LOCAL_IP}/users/wishlist`, {
+		await fetch(`${HEROKU_IP}/users/wishlist`, {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `token=${token}&title=${movie.title}`,
@@ -56,7 +56,7 @@ const MovieHomeItem = ({ movie }) => {
 			genresArray.push(genre.name);
 		});
 
-		await fetch(`${LOCAL_IP}/users/wishlist`, {
+		await fetch(`${HEROKU_IP}/users/wishlist`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `token=${token}&title=${movie.data.title}&id=${movie.data.id}&runtime=${new Date(

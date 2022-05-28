@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 	Alert,
 } from 'react-native';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToken } from '../features/login/tokenSlice';
@@ -38,7 +38,7 @@ const Signin = (props, { navigation }) => {
 	}, []);
 	// SIGNIN
 	let handleSubmitSignin = async () => {
-		const data = await fetch(`${LOCAL_IP}/users/signin`, {
+		const data = await fetch(`${HEROKU_IP}/users/signin`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 			body: `emailFromFront=${signinEmail}&passwordFromFront=${signinPassword}`,
@@ -76,7 +76,7 @@ const Signin = (props, { navigation }) => {
 	// IF USER SIGNED IN => IMPORT WISHLIST FROM DB
 	if (userExists) {
 		const getMoviesFromWishlist = async () => {
-			const data = await fetch(`${LOCAL_IP}/users/wishlist/${localToken}`);
+			const data = await fetch(`${HEROKU_IP}/users/wishlist/${localToken}`);
 
 			const body = await data.json();
 			if (body.result && body.movies) {

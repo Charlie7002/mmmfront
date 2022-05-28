@@ -7,7 +7,7 @@ import {
 	TouchableOpacity,
 	Alert,
 } from 'react-native';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToken } from '../features/login/tokenSlice';
@@ -33,7 +33,7 @@ const Signup = (props, { navigation }) => {
 
 	// SIGNUP
 	let handleSubmitSignup = async () => {
-		const data = await fetch(`${LOCAL_IP}/users/signup`, {
+		const data = await fetch(`${HEROKU_IP}/users/signup`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 			body: `emailFromFront=${signupEmail}&passwordFromFront=${signupPassword}&confirmPasswordFromFront=${signupConfirmPassword}`,

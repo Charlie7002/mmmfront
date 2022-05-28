@@ -7,7 +7,7 @@ import {
 	View,
 	Linking,
 } from 'react-native';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import TextCustom from '../components/TextCustom';
@@ -23,7 +23,7 @@ const MusicDetail = ({ route, navigation }) => {
 	const { id } = route.params;
 	useEffect(() => {
 		const getMusicDetail = async () => {
-			var musicRaw = await fetch(`${LOCAL_IP}/music/getMusic/${id}`);
+			var musicRaw = await fetch(`${HEROKU_IP}/music/getMusic/${id}`);
 			var music = await musicRaw.json();
 			setDetail(music.tracks);
 			setTop(music.top);

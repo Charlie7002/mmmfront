@@ -1,7 +1,7 @@
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 import {
 	addMoodFilter,
 	addMoodList,
@@ -20,11 +20,11 @@ const SmileyItem = ({ name }) => {
 		<TouchableOpacity
 			onPress={async () => {
 				dispatch(addMoodFilter(name));
-				var filterMoodRaw = await fetch(`${LOCAL_IP}/music/mood/${name}`);
+				var filterMoodRaw = await fetch(`${HEROKU_IP}/music/mood/${name}`);
 				var moodMusic = await filterMoodRaw.json();
 				filterMood = moodMusic.filter;
 				dispatch(addMoodList(filterMood));
-				var filterMoodPLRaw = await fetch(`${LOCAL_IP}/music/getPlaylist/${name}`);
+				var filterMoodPLRaw = await fetch(`${HEROKU_IP}/music/getPlaylist/${name}`);
 				var moodPL = await filterMoodPLRaw.json();
 				var filterPLMood = moodPL.playlists;
 				dispatch(addMoodPlay(filterPLMood));

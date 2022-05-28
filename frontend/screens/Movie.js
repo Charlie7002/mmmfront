@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LOCAL_IP } from '@env';
+import { HEROKU_IP } from '@env';
 
 import {
 	ScrollView,
@@ -48,7 +48,7 @@ const Movie = props => {
 	useEffect(() => {
 		const getMovies = async () => {
 			try {
-				const mov = await axios.get(`${LOCAL_IP}/movie/getMovies`, {
+				const mov = await axios.get(`${HEROKU_IP}/movie/getMovies`, {
 					params: {
 						genres: moodGenre,
 						adultFilter: publicFilter,
@@ -67,7 +67,7 @@ const Movie = props => {
 	useEffect(() => {
 		const getMoviesPopular = async () => {
 			try {
-				const mov = await axios.get(`${LOCAL_IP}/movie/getMoviesPopular`);
+				const mov = await axios.get(`${HEROKU_IP}/movie/getMoviesPopular`);
 				dispatch(addMoviePopularFetch(mov.data));
 			} catch (err) {
 				console.log(err);
@@ -79,7 +79,7 @@ const Movie = props => {
 	useEffect(() => {
 		const getNowMovies = async () => {
 			try {
-				const movNow = await axios.get(`${LOCAL_IP}/movie/getNowPlaying`);
+				const movNow = await axios.get(`${HEROKU_IP}/movie/getNowPlaying`);
 				dispatch(addMovieNow(movNow.data));
 			} catch (err) {
 				console.log(err);

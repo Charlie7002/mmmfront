@@ -9,7 +9,8 @@ import {
 	ActivityIndicator,
 } from 'react-native';
 import uuid from 'react-native-uuid';
-import { LOCAL_IP } from '@env';
+
+import { HEROKU_IP } from '@env';
 import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -40,7 +41,7 @@ const MovieDetail = ({ route, navigation }) => {
 	useEffect(() => {
 		const getMovieDetail = async () => {
 			try {
-				const mov = await axios.get(`${LOCAL_IP}/movie/getDetailsMovies/${id}`);
+				const mov = await axios.get(`${HEROKU_IP}/movie/getDetailsMovies/${id}`);
 				setMovie(mov.data);
 			} catch (err) {
 				console.log(err);
@@ -48,7 +49,7 @@ const MovieDetail = ({ route, navigation }) => {
 		};
 		const getMovieActors = async () => {
 			try {
-				const mov2 = await axios.get(`${LOCAL_IP}/movie/getActorMovies/${id}`);
+				const mov2 = await axios.get(`${HEROKU_IP}/movie/getActorMovies/${id}`);
 				setActors(mov2.data);
 			} catch (err) {
 				console.log(err);
@@ -56,7 +57,7 @@ const MovieDetail = ({ route, navigation }) => {
 		};
 		const getProv = async () => {
 			try {
-				const mov3 = await axios.get(`${LOCAL_IP}/movie/findProvider`, {
+				const mov3 = await axios.get(`${HEROKU_IP}/movie/findProvider`, {
 					params: {
 						id,
 					},
