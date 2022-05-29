@@ -59,10 +59,10 @@ const Music = (props, { navigation }) => {
 
 	useEffect(() => {
 		async function getTop() {
-			var topRaw = await fetch(`${HEROKU_IP}/music/getTop`);
+			var topRaw = await fetch(`https://mmmbackend.herokuapp.com/music/getTop`);
 			var top = await topRaw.json();
 			setTop(top.search);
-			var playTopRaw = await fetch(`${HEROKU_IP}/music/getPlaylist/top`);
+			var playTopRaw = await fetch(`https://mmmbackend.herokuapp.com/music/getPlaylist/top`);
 			var playTop = await playTopRaw.json();
 			setPlaylist(playTop.playlists);
 		}
@@ -192,13 +192,13 @@ const Music = (props, { navigation }) => {
 												onPress={async () => {
 													dispatch(addAmbianceFilter(ambiance.name));
 													var filterAmbianceRaw = await fetch(
-														`${HEROKU_IP}/music/ambiance/${ambiance.name}`,
+														`https://mmmbackend.herokuapp.com/music/ambiance/${ambiance.name}`,
 													);
 													var ambianceMusic = await filterAmbianceRaw.json();
 													var filterAmbiance = ambianceMusic.filter;
 													setAmbi(filterAmbiance);
 													var filterAmbiancePLRaw = await fetch(
-														`${HEROKU_IP}/music/getPlaylist/${ambiance.name}`,
+														`https://mmmbackend.herokuapp.com/music/getPlaylist/${ambiance.name}`,
 													);
 													var ambiancePLMusic = await filterAmbiancePLRaw.json();
 													var filterAmbiancePL = ambiancePLMusic.playlists;
@@ -240,13 +240,13 @@ const Music = (props, { navigation }) => {
 												onPress={async () => {
 													dispatch(addGenreFilter(genre.name));
 													var filterGenreRaw = await fetch(
-														`${HEROKU_IP}/music/genre/${genre.name}`,
+														`https://mmmbackend.herokuapp.com/music/genre/${genre.name}`,
 													);
 													var genreMusic = await filterGenreRaw.json();
 													var filterGenre = genreMusic.filter;
 													setGenre(filterGenre);
 													var filterGenrePLRaw = await fetch(
-														`${HEROKU_IP}/music/getPlaylist/${genre.name}`,
+														`https://mmmbackend.herokuapp.com/music/getPlaylist/${genre.name}`,
 													);
 													var genrePLMusic = await filterGenrePLRaw.json();
 													var filterGenrePL = genrePLMusic.playlists;

@@ -16,11 +16,14 @@ const MovieHomeItem = ({ movie }) => {
 
 	const getMovies = async id => {
 		try {
-			const movie = await axios.get(`${HEROKU_IP}/movie/getDetailsMoviesForWishlist`, {
-				params: {
-					id,
+			const movie = await axios.get(
+				`https://mmmbackend.herokuapp.com/movie/getDetailsMoviesForWishlist`,
+				{
+					params: {
+						id,
+					},
 				},
-			});
+			);
 			// console.log(mov.data);
 			dispatch(
 				addToWishlist({
@@ -43,7 +46,7 @@ const MovieHomeItem = ({ movie }) => {
 
 	// DELETE MOVIE FROM DATA BASE
 	let removeFromDBWishlist = async title => {
-		await fetch(`${HEROKU_IP}/users/wishlist`, {
+		await fetch(`https://mmmbackend.herokuapp.com/users/wishlist`, {
 			method: 'DELETE',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `token=${token}&title=${movie.title}`,
@@ -56,7 +59,7 @@ const MovieHomeItem = ({ movie }) => {
 			genresArray.push(genre.name);
 		});
 
-		await fetch(`${HEROKU_IP}/users/wishlist`, {
+		await fetch(`https://mmmbackend.herokuapp.com/users/wishlist`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: `token=${token}&title=${movie.data.title}&id=${movie.data.id}&runtime=${new Date(

@@ -33,7 +33,7 @@ const Signup = (props, { navigation }) => {
 
 	// SIGNUP
 	let handleSubmitSignup = async () => {
-		const data = await fetch(`${HEROKU_IP}/users/signup`, {
+		const data = await fetch(`https://mmmbackend.herokuapp.com/users/signup`, {
 			method: 'POST',
 			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 			body: `emailFromFront=${signupEmail}&passwordFromFront=${signupPassword}&confirmPasswordFromFront=${signupConfirmPassword}`,

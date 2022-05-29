@@ -106,11 +106,12 @@ const MovieDetail = ({ route, navigation }) => {
 
 	const getMovies = async id => {
 		try {
-			const movie = await axios.get(`${LOCAL_IP}/movie/getDetailsMoviesForWishlist`, {
+			const movie = await axios.get(`${HEROKU_IP}/movie/getDetailsMoviesForWishlist`, {
 				params: {
 					id,
 				},
 			});
+			console.log('dans get movie');
 
 			dispatch(
 				addToWishlist({
